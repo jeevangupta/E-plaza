@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="MangoorCart.css">
+  <link rel="stylesheet" type="text/css" href="sign.css">
+  <title>MangoorCart - Online Furniture Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+.error {color: #FF0000;}
+</style>
+</head>
+<body>
+  <div>
+  <h1 class="main"><em> MangoorCart</em><i class="material-icons" style="font-size:36px">add_shopping_cart</i></h1>
+  </div>
+  <div class="one">
+    <a href="aboutus.html" style="padding-left: 2%;"target="_blank"><em> Aboutus</em></a>
+    <a href="signin.html" style="padding-right:2%;padding-left:75%" target="_blank"><em> Signin</em></a>
+    <a href="basket.php" style="padding-right:2%;" target="_blank"><em> Basket</em></a>
+  </div>
+  <div class="container">
+<form action='./registration.php' method='POST' id='loginForm'>
+<p><span class="error">Please fill in this form to create an account</span></p>
+<br>
+<label><b>Username</b></label><input type='text' name='name' id='username'required /></label></br>
+<p><span class="error">Password should be at least one number, one lowercase and one uppercase letter and at least six characters that are letters, numbers or the underscore.</span></p>
+
+<label><b>Password</b></label><input type='password' name='password' id='password' onblur="passf()" required /></br>
+<label><b>Phone no</b></label><input type='text' name='phno' id='phno' required /></br>
+<label><b>Email-id</b></label><input type='text' name='email' id='email' onblur="emaif()" required /></br>
+<b>Gender:</b><br>
+<input type="radio" name="gender" value="male" > Male<br>
+<input type="radio" name="gender" value="female"> Female<br>
+<input type="radio" name="gender" value="other"> Other<br>
+<div class="clearfix">
+  <button type="cancel" class="cancelbtn" name="cancel" value="Cancel">Cancel</button>
+  <button type="submit" class="signupbtn" name="submit" value="Submit">Submit</button>
+</div>
+
+<p>Already Signed up?
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button></p>
+</form>
+</div>
+
+<!-- login form! -->
+<div id="id01" class="modal">
+  <form class="modal-content animate" method="POST" action="./login.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img/login.jpg" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="login_email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="login_psw" required>
+
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn1">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+<script type="text/javascript">
+
+document.getElementById("loginForm").onsubmit = function(e){
+var nam= document.getElementById("username").value;
+var pass= document.getElementById("password").value;
+var pno= document.getElementById("phno").value;
+var em= document.getElementById("email").value;
+namf(nam);
+passf(pass);
+valp(pno);
+emailf(em);
+}
+
+function namf(nam)
+{
+  var nam= document.getElementById("username").value;
+	var letters = /^[A-Za-z]+$/;
+	if(nam==""||nam==null){
+	alert ("enter a username");
+	e.preventDefault();
+	}
+	else if(nam.match(letters))
+	{
+	return true;
+	}
+	else
+	{
+		alert("Username must have alphabet characters only");
+		return false;
+	}
+}
+
+function passf(pass)
+{
+  var pass= document.getElementById("password").value;
+	if(pass==""){
+	alert ("enter a password");
+	e.preventDefault();
+	}
+	var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
+	// at least one number, one lowercase and one uppercase letter
+    // at least six characters that are letters, numbers or the underscore
+     if(pass.match(re))
+	 {
+		return true;
+	}
+		else
+		{
+			alert("password should contain at least one number,one lowercase and one uppercase letter");
+			return false;
+		}
+}
+
+function  valp(pno)
+{
+  var pno= document.getElementById("phno").value;
+	var phoneno = /^\d{10}$/;
+	if(pno.match(phoneno))
+	{
+		return true;
+	}
+	else
+	{
+		alert("Not a valid Phone Number");
+		return false;
+	}
+
+}
+
+function emailf(em)
+{
+  var em= document.getElementById("email").value;
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(em.match(mailformat))
+	{
+		return true;
+	}
+	else
+	{
+		alert("You have entered an invalid email address!");
+		return false;
+	}
+}
+
+</script>
+</body>
+</html>
